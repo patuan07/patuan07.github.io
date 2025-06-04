@@ -13,7 +13,7 @@ Welcome to my website, where you can learn more about [me](https://patuan07.gith
 
 ------
 
-NEWS & UPDATE
+# **NEWS & UPDATES:
 ======
 - **MONTH - DATE**: MY ACHIEVEMENT!
 - **MONTH - DATE**: MY ACHIEVEMENT!
