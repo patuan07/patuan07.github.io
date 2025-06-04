@@ -20,3 +20,5 @@ NEWS & UPDATES:
   **MONTH - DATE**: MY ACHIEVEMENT!  
   
   **MONTH - DATE**: MY ACHIEVEMENT!  
+
+<p style="text-align:center;">Text_content</p>
