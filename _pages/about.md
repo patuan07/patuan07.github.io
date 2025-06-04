@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "ANH TUAN (BEN) PHAM"
+title: "**ANH TUAN (BEN) PHAM**"
 author_profile: true
 redirect_from: 
   - /about/
@@ -13,7 +13,7 @@ Welcome to my website, where you can learn more about [me](https://patuan07.gith
 
 ------
 
-**NEWS & UPDATES:**
+NEWS & UPDATES:
 ======
   **MONTH - DATE**: MY ACHIEVEMENT!  
   
