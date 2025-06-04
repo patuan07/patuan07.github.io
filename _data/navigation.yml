@@ -11,8 +11,8 @@ main:
   - title: "About"
     url: /aboutme/
 
-  - title: "Talks"
-    url: /talks/    
+  - title: "Resume"
+    url: /resume/    
 
   - title: "Teaching"
     url: /teaching/    
@@ -23,8 +23,8 @@ main:
   - title: "Blog Posts"
     url: /year-archive/
     
-  - title: "CV"
-    url: /cv/
+  - title: "Talks"
+    url: /talks/
     
   # - title: "CV"
   #   url: /cv-json/
