@@ -14,11 +14,11 @@ main:
   - title: "Resume"
     url: /resume/    
 
-  - title: "Teaching"
-    url: /teaching/    
-    
   - title: "Portfolio"
-    url: /portfolio/
+    url: /portfolio/    
+    
+  - title: "Stats"
+    url: /stats/
         
   - title: "Blog Posts"
     url: /year-archive/
