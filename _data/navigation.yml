@@ -20,14 +20,14 @@ main:
   - title: "Stats"
     url: /stats/
         
-  - title: "Blog Posts"
-    url: /year-archive/
+  # - title: "Blog Posts"
+  #  url: /year-archive/
     
-  - title: "Talks"
-    url: /talks/
+  - title: "Contacts"
+    url: /contacts/
     
   # - title: "CV"
   #   url: /cv-json/
     
-  - title: "Guide"
-    url: /markdown/
+  # - title: "Guide"
+  #  url: /markdown/
