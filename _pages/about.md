@@ -15,10 +15,8 @@ Welcome to my website, where you can learn more about [me](https://patuan07.gith
 
 NEWS & UPDATES:
 ======
-  **MONTH - DATE**: MY ACHIEVEMENT!  
+  **SEP 11, 2025**: I became the Individual Contributor of Hornet XI's Software team!
   
-  **MONTH - DATE**: MY ACHIEVEMENT!  
-  
-  **MONTH - DATE**: MY ACHIEVEMENT!  
+  **SEP 02, 2025**: I got accepted into Hornet XI's Software team! 
 
-<p style="text-align:center;">Text_content</p>
+<p style="text-align:center;">Looking forward to be more involved in projects!</p>
