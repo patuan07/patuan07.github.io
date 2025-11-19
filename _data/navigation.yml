@@ -14,8 +14,8 @@ main:
   - title: "Resume"
     url: /resume/    
 
-  - title: "Portfolio"
-    url: /portfolio/    
+  - title: "Projects"
+    url: /projects/    
     
   - title: "Stats"
     url: /stats/
