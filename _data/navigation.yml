@@ -17,8 +17,8 @@ main:
   - title: "Projects"
     url: /projects/    
     
-  - title: "Stats"
-    url: /stats/
+  #- title: "Stats"
+  #  url: /stats/
         
   # - title: "Blog Posts"
   #  url: /year-archive/
