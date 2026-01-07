@@ -32,6 +32,7 @@ The centerpiece of the module is the group design project. Students must design,
 
 - **Precision Maneuvering**: Execution of specific terminal tasks, such as stopping within a defined zone or discharging a payload.
 
-<img width="687" height="171" alt="image" src="https://raw.githubusercontent.com/patuan07/patuan07.github.io/refs/heads/master/images/ground-course.png" />
-
+<div align="center">
+  <img width="687" height="171" alt="image" src="https://raw.githubusercontent.com/patuan07/patuan07.github.io/refs/heads/master/images/ground-course.png" />
+</div>
 [View on Github](https://github.com/patuan07/eg1311-project-nus)
