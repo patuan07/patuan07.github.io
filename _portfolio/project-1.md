@@ -1,6 +1,7 @@
 ---
 title: "Wall-following robot"
 excerpt: "Wall following robot that can navigate through a maze<br/><img src='/images/BingdaRobot.png'>"
+date: "2025-11-15"
 collection: projects
 ---
 
