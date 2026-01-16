@@ -48,7 +48,7 @@ On the hardware side, the architecture leverages the ESP32-S3's high-speed proce
 Moreover, the software is highly customizable through "System Prompts," which allow developers to hardcode specific personalities or roles directly into the AI's logic—making it an ideal "brain" for a custom robot that needs to behave in a specific way, such as a language tutor or a personalized assistant.
 
 <div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="../images/fixed-audio-circuit.jpg" />
+  <img width="400" height="300" alt="Sound Circuit" src="/images/fixed-audio-circuit.jpg" />
   <br>
   <em>Electric circuit of the AI Assistant system.</em>
 </div>
