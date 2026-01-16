@@ -57,7 +57,7 @@ Moreover, the software is highly customizable through "System Prompts," which al
 A key element in humanizing the robotic assistant is the inclusion of a 3D-printed animatronic eye mechanism. Based on the open-source designs by Will Cogley, this mechanism provides a robust yet simple solution for realistic gaze and blinking. The motion control system is powered by an Arduino, utilizing an Adafruit 16-channel 12-bit PWM/Servo Driver to ensure smooth, precise servo transitions, allowing the robot to establish more engaging contact with the user.
 
 <div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="../images/animatronic-eyes.jpg" />
+  <img width="400" height="300" alt="Sound Circuit" src="/images/animatronic-eyes.jpg" />
   <br>
   <em>Animatronic eyes connected to Adafruit Servo Driver.</em>
 </div>
@@ -65,7 +65,7 @@ A key element in humanizing the robotic assistant is the inclusion of a 3D-print
 To give the robot a more friendly appearance, I also included an LCD mouth using the LCM1602 package, which features I2C support for easy implementation. Since the module’s internal ROM lacked appropriate mouth shapes, I developed custom 5x8 pixel glyphs to represent different mouth states. By alternating between these custom characters during audio playback, a basic lip-syncing effect was achieved. Final calibration involved manually tuning the onboard potentiometer on the I2C backpack to optimize the contrast ratio for maximum legibility.
 
 <div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="../images/untuned-lcd.png" />
+  <img width="400" height="300" alt="Sound Circuit" src="/images/untuned-lcd.png" />
   <br>
   <em>Untuned LCD screen not being able to display characters clearly.</em>
 </div>
@@ -76,7 +76,7 @@ To facilitate natural user interaction, the system will passively listen for spe
 Inter-board communication between the ESP32 and the Arduino Uno was implemented using a GPIO-based bit-signaling system to synchronize the robot’s state. Although the ESP32 operates on a 3.3V logic level, this voltage is sufficient to meet the Input High Voltage threshold for the Arduino Uno. This direct connection allowed for reliable signal detection without the need for a level shifter, while inherently protecting the ESP32 from overvoltage, as the signal remains within the safe operating limits of both devices.
 
 <div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="../images/bit-wise-system.png" />
+  <img width="400" height="300" alt="Sound Circuit" src="/images/bit-wise-system.png" />
   <br>
   <em>Bit logic for distinct states.</em>
 </div>
@@ -86,8 +86,8 @@ Inter-board communication between the ESP32 and the Arduino Uno was implemented 
 The system was assembled in accordance with the schematics provided in the following section. To ensure structural integrity and improve the overall aesthetic of the robot, the internal components and circuitry were housed within a custom white enclosure. This integration not only conceals the complex wiring but also protects the sensitive electronics from external interference and physical damage.
 
 <div align="center">
-  <img width="50.6%" alt="Messy Circuit" src="../images/messy-circuit.jpg" />
-  <img width="38%" alt="Arranged Circuit" src="../images/boxed-circuit.png" />
+  <img width="50.6%" alt="Messy Circuit" src="/images/messy-circuit.jpg" />
+  <img width="38%" alt="Arranged Circuit" src="/images/boxed-circuit.png" />
   <br>
   <em>Unarranged wiring (left) and corresponding wiring inside the electrical box (right).</em>
 </div>
@@ -95,7 +95,7 @@ The system was assembled in accordance with the schematics provided in the follo
 ## Schematics
 
 <div align="center">
-  <img width="96%" alt="Sound Circuit" src="../images/talking-robot-schematics.jpg" />
+  <img width="96%" alt="Sound Circuit" src="/images/talking-robot-schematics.jpg" />
   <br>
   <em>Schematics for wiring.</em>
 </div>
