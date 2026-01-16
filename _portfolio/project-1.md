@@ -5,8 +5,6 @@ date: "2025-11-15"
 collection: projects
 ---
 
-# Maze navigation ground robot
-
 This project is done to satisfy the Hands-on Activity of RB1101 at National University of Singapore.
 
 [View on Github](https://github.com/patuan07/rb1101)
