@@ -86,8 +86,8 @@ Inter-board communication between the ESP32 and the Arduino Uno was implemented 
 The system was assembled in accordance with the schematics provided in the following section. To ensure structural integrity and improve the overall aesthetic of the robot, the internal components and circuitry were housed within a custom white enclosure. This integration not only conceals the complex wiring but also protects the sensitive electronics from external interference and physical damage.
 
 <div align="center">
-  <img width="60%" alt="Messy Circuit" src="../images/messy-circuit.jpg" />
-  <img width="20%" alt="Arranged Circuit" src="../images/boxed-circuit.png" />
+  <img width="50.6%" alt="Messy Circuit" src="../images/messy-circuit.jpg" />
+  <img width="38%" alt="Arranged Circuit" src="../images/boxed-circuit.png" />
   <br>
   <em>Unarranged wiring (left) and corresponding wiring inside the electrical box (right).</em>
 </div>
