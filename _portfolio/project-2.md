@@ -1,6 +1,7 @@
 ---
 title: "Autonomous Ground Robot"
 excerpt: "Course-traversing robot that can cross through obstacles <br/><img src='/images/final_robot_2.jpg'>"
+date: "2025-11-12"
 collection: portfolio
 ---
 
