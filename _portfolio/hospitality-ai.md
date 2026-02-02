@@ -1,7 +1,7 @@
 ---
 title: "Hospitality AI for Bed Audits"
 excerpt: "Machine Learning Model that can automate bed audits. <br/><img src='/images/bed-align_500x500.png'>"
-date: "2026-02-03"
+date: "2026-02-02"
 collection: projects
 ---
 
@@ -23,7 +23,11 @@ While the competition provided ready-to-run Google Colab notebooks, I wanted to 
 
 ## Workflow Overview
 
-[Workflow diagram/description section]
+<div align="center">
+  <img width="90%" alt="Workflow" src="/images/hospitality-workflow.png" />
+  <br>
+  <em>Program workflow and design.</em>
+</div>
 
 ## Stage 1: Binary Classification
 
@@ -41,7 +45,7 @@ I chose the latter configuration, as having a dedicated test set allows me to ru
 There are several ways to split data into the correct structure for model training. During initial testing, I uploaded around 100 images from each category to Roboflow, a platform used to create and manage datasets for machine learning models. While this was sufficient for early experimentation, scaling up to the full dataset of around 1,700 images proved impractical, as the time required for uploading and downloading the data was too long. As a result, I wrote a simple script to split and organize the dataset locally into the required directory structure. This approach removed the dependency on external tools, allowed faster iteration, and gave better control over the data pipeline. Handling the dataset locally significantly improved efficiency and accelerated overall project progress.
 
 <div align="center">
-  <img width="50%" alt="Stage 1 demo" src="/images/stage-1-demo.png" />
+  <img width="90%" alt="Stage 1 demo" src="/images/stage-1-demo.png" />
   <br>
   <em>Demonstration of interface during stage 1.</em>
 </div>
@@ -105,7 +109,7 @@ While newer models like YOLO11 offer incremental accuracy improvements, the trad
 This choice exemplifies a key engineering principle: selecting "good enough" solutions that maximize iteration speed rather than chasing theoretical optimality when time is constrained.
 
 <div align="center">
-  <img width="50%" alt="Stage 2 and 3 demo" src="/images/stage-2-3-demo.png" />
+  <img width="90%" alt="Stage 2 and 3 demo" src="/images/stage-2-3-demo.png" />
   <br>
   <em>Demonstration of interface during stage 2 and 3.</em>
 </div>
@@ -118,7 +122,7 @@ In hindsight, this phenomenon can be partly attributed to my dataset selection p
 
 <div align="center">
   <img width="45%" alt="Label Quantities" src="/images/stage-23-label.png" />
-  <img width="45%" alt="Confusion Matrix" src="/images/stage-23-confusion-matrix.png" />
+  <img width="51%" alt="Confusion Matrix" src="/images/stage-23-confusion-matrix.png" />
   <br>
   <em>Label in dataset (left) and confusion matrix (right).</em>
 </div>
@@ -138,7 +142,7 @@ Using these detections, I computed the center point of the blanket and the cente
 In an ideal case where the pillows are properly aligned, this resultant vector should be parallel or orthogonal to the sides of the blanket. To extract the blanket's orientation, we applied the Hough Transform to detect prominent lines in the image, including the edges of the blanket. By comparing the angle between the resultant vector and the detected blanket edges, we were able to quantify alignment quality and assign a normalized score between 0 and 1.
 
 <div align="center">
-  <img width="50%" alt="Pillow allignment" src="/images/bed-align.png" />
+  <img width="70%" alt="Pillow allignment" src="/images/bed-align.png" />
   <br>
   <em>Checking pillow allignment using traditional methods.</em>
 </div>
@@ -155,7 +159,7 @@ To address this issue, I adjusted the **early stopping patience parameter** in t
 The training loss eventually decreased from 0.95 to approximately 0.6, and the model's validation accuracy improved significantly, enabling reliable pillow detection for the geometric alignment task.
 
 <div align="center">
-  <img width="50%" alt="Stage 4 demo" src="/images/stage-4-demo.png" />
+  <img width="90%" alt="Stage 4 demo" src="/images/stage-4-demo.png" />
   <br>
   <em>Demonstration of interface during stage 4.</em>
 </div>
