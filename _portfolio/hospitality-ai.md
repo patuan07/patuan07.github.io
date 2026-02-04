@@ -7,6 +7,8 @@ collection: projects
 
 # Automating Bed Cleanliness Audits: A Technical Deep Dive
 
+[View this project on Github](https://github.com/patuan07/HospitalityAI)
+
 ## Introduction
 
 I recently had the opportunity to compete in the latest RoboRoarZ international robotics competition in Singapore. Immersed in the AI challenge, I was tasked with a problem that bridges the gap between robotics and the hospitality industry: Automating Bed Cleanliness Audits. The goal was to develop a Machine Learning model capable of determining if a bed is properly made and pinpointing specific "critical flaws" that require attention.
