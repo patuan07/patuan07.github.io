@@ -12,6 +12,8 @@ redirect_from:
 
 Hi! I'm Tuan, a first-year undergraduate studying **Robotics and Machine Intelligence** at the **National University of Singapore (NUS)**. I'm passionate about building intelligent systems that bridge the gap between software and hardware—whether that's autonomous robots, computer vision applications, or interactive embedded devices.
 
+
+
 # What I Do
 
 My work sits at the intersection of **embedded systems**, **machine learning**, and **robotics**. I enjoy tackling challenges that require both algorithmic thinking and hands-on engineering. From training neural networks to designing circuit boards, I'm energized by projects that demand diverse technical skills and creative problem-solving.
@@ -40,14 +42,6 @@ I enjoy collaborating with others who share similar interests and am always eage
 # Looking Ahead
 
 As I continue my studies, I'm excited to deepen my knowledge in autonomous systems, computer vision, and embedded AI. I'm particularly interested in opportunities that allow me to work on real-world applications where intelligent systems interact with their environment.
-
-# Let's Connect
-
-I'm always open to discussing interesting projects, technical challenges, or opportunities to collaborate. Feel free to reach out:
-
-- **Email**: phamanhtuanben@gmail.com
-- **GitHub**: [github.com/patuan07](https://github.com/patuan07)
-- **LinkedIn**: [linkedin.com/in/patuanben](https://www.linkedin.com/in/patuanben)
 
 ---
 
