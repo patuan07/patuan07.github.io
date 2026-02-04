@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* B.S in Robotics and Machine Intelligence, National University of Singapore, 2029 (expected)
+[Download PDF Resume](/files/Resume_Pham_Anh_Tuan.pdf){: .btn .btn--primary}
 
+<iframe src="/files/Resume_Pham_Anh_Tuan.pdf#toolbar=0" width="100%" height="1000px" style="border: none;">
+</iframe>
