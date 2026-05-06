@@ -115,6 +115,14 @@ blockquote {
 /* links */
 
 a {
+  color: var(--global-link-text-color, var(--global-text-color));
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+
   &:focus {
     @extend %tab-focus;
   }
@@ -122,6 +130,10 @@ a {
   &:hover,
   &:active {
     outline: 0;
+    color: #ff0000;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: #ff0000;
   }
 }
 

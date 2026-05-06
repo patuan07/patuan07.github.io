@@ -1,13 +1,15 @@
 ---
 title: "Wall-following robot"
-excerpt: "Wall following robot that can navigate through a maze<br/><img src='/images/BingdaRobot.png'>"
+excerpt: "Wall following robot that can navigate through a maze."
+cover: "/images/wall-following-robot/BingdaRobot.png"
+project_website: "https://github.com/patuan07/rb1101"
 date: "2025-11-15"
 collection: projects
 ---
 
 This project is done to satisfy the Hands-on Activity of RB1101 at National University of Singapore.
 
-[View on Github](https://github.com/patuan07/rb1101)
+[View this project on Github](https://github.com/patuan07/rb1101)
 
 ## Introduction
 

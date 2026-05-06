@@ -15,10 +15,19 @@
   }
 
   a {
+    color: var(--global-link-text-color, var(--global-text-color));
     text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: all 0.3s ease;
 
     &:hover {
+      color: #ff0000;
       text-decoration: underline;
+      text-decoration-style: solid;
+      text-decoration-color: #ff0000;
 
       img {
         box-shadow: 0 0 10px rgba(#000, 0.25);

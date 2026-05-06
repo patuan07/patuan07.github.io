@@ -1,13 +1,11 @@
 ---
 permalink: /
-title: "**ANH TUAN (BEN) PHAM**"
+title: "**WELCOME!**"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
-# Welcome!
 
 You can call me Ben or Tuan (pronounced like "Twan" if you're struggling).
 
@@ -15,9 +13,9 @@ Welcome to my website, where you can learn more about [me](https://patuan07.gith
 
 ## About Me
 
-I'm a first-year undergraduate studying **Robotics and Machine Intelligence** at the **National University of Singapore**. My interests lie at the intersection of autonomous systems, computer vision, and embedded AI—basically, building intelligent machines that can perceive and interact with the real world.
+I'm a first-year undergraduate studying **Robotics and Machine Intelligence** at the **National University of Singapore**. My interests lie at the intersection of autonomous systems, computer vision, and embedded AI—basically, building intelligent machines that can perceive and interact with the real world. I am also looking into higher level concepts and idea for Machine Intelligence such as Reinforcement Learning.
 
-Currently, I'm a **Software Individual Contributor** at **Hornet XI's Software Team**, where we're developing an Autonomous Underwater Vehicle. It's an exciting challenge that combines perception systems, path planning, and real-time control in one of the most demanding environments for robotics.
+Currently, I'm a **Software Engineer** at **Bumblebee Autonomous Systems**, where we're developing an Autonomous Underwater Vehicle. It's an exciting challenge that combines perception systems, path planning, and real-time control in one of the most demanding environments for robotics.
 
 <div align="center">
   <img width="96%" alt="AUV" src="/images/auv.jpg" />
@@ -41,6 +39,8 @@ Feel free to explore, and don't hesitate to reach out if you'd like to discuss r
 
 NEWS & UPDATES:
 ======
+  **MAR 25, 2026**: I am officially a member of Software team at <a href="https://bumblebee.sg/">Bumblebee Autonomous Systems</a>.
+  
   **JAN 23, 2025**: I won 4th place at RoboRoarZ 2026 AI Challenge!
 
   **SEP 11, 2025**: I became the Individual Contributor of Hornet XI's Software team!
