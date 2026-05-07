@@ -13,7 +13,7 @@ redirect_from:
 # Pham Anh Tuan
 **National University of Singapore** *Undergraduate, B.Eng. in Robotics and Machine Intelligence*
 
-[GitHub](https://github.com/patuan07) | [LinkedIn](#)
+Check out my [GitHub](https://github.com/patuan07) and [LinkedIn](#).
 
 ---
 
