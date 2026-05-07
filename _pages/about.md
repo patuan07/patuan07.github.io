@@ -13,7 +13,7 @@ Welcome to my website, where you can learn more about [me](https://patuan07.gith
 
 ## About Me
 
-I'm a first-year undergraduate studying **Robotics and Machine Intelligence** at the **National University of Singapore**. My interests lie at the intersection of autonomous systems, computer vision, and embedded AI—basically, building intelligent machines that can perceive and interact with the real world. I am also looking into higher level concepts and idea for Machine Intelligence such as Reinforcement Learning.
+I'm a rising sophomore studying **Robotics and Machine Intelligence** at the **National University of Singapore**. My interests lie at the intersection of autonomous systems, computer vision, and embedded AI—basically, building intelligent machines that can perceive and interact with the real world. I am also looking into higher level concepts and idea for Machine Intelligence such as Reinforcement Learning.
 
 Currently, I'm a **Software Engineer** at **Bumblebee Autonomous Systems**, where we're developing an Autonomous Underwater Vehicle. It's an exciting challenge that combines perception systems, path planning, and real-time control in one of the most demanding environments for robotics.
 
