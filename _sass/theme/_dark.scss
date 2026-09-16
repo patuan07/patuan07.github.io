@@ -44,7 +44,11 @@ html[data-theme="dark"] {
     --global-code-text-color            : #{$darker-gray};
     --global-fig-caption-color          : #{$light-gray};
     --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
+    /* $link-light, not $link-dark. On this dark ground darkening a link on
+       hover lowers its contrast — every hovered link would recede. The light
+       theme's hover is a 25%-blackened $info-color, i.e. darker than its own
+       background-ish text, so both themes now move away from the page. */
+    --global-link-color-hover           : #{$link-light};
     --global-link-color-visited         : #{$link-light};
     --global-link-text-color            : #fff;
     --global-masthead-link-color        : #{$text};

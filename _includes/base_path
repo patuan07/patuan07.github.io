@@ -1,4 +1,21 @@
-{% if site.url %}
+{% comment %}
+  Prefix for asset and page URLs.
+
+  In production this stays the absolute site URL, which is what GitHub Pages,
+  jekyll-feed and jekyll-sitemap expect.
+
+  Under `jekyll serve` it resolves to just the baseurl (empty on this site), so
+  every {{ base_path }}/... reference becomes root-relative (/assets/...).
+
+  Without this split a local server emits HTML that links the *deployed*
+  stylesheet and scripts. _sass edits then appear to do nothing, images that
+  exist only locally 404, and any script that has not been pushed yet 404s with
+  them — which is what silently removed the projects page filter buttons, since
+  they ship `hidden` and are revealed by assets/js/portfolio-filter.js.
+{% endcomment %}
+{% if jekyll.environment == "development" %}
+  {% assign base_path = site.baseurl %}
+{% elsif site.url %}
   {% assign base_path = site.url | append: site.baseurl %}
 {% else %}
   {% assign base_path = site.github.url %}

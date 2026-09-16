@@ -130,10 +130,10 @@ a {
   &:hover,
   &:active {
     outline: 0;
-    color: #ff0000;
+    color: var(--global-link-color-hover);
     text-decoration: underline;
     text-decoration-style: solid;
-    text-decoration-color: #ff0000;
+    text-decoration-color: var(--global-link-color-hover);
   }
 }
 

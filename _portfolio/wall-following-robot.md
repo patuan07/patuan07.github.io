@@ -5,6 +5,7 @@ cover: "/images/wall-following-robot/BingdaRobot.png"
 project_website: "https://github.com/patuan07/rb1101"
 date: "2025-11-15"
 collection: projects
+tags: [Robotics, ROS 2]
 ---
 
 This project is done to satisfy the Hands-on Activity of RB1101 at National University of Singapore.

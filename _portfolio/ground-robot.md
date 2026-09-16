@@ -5,6 +5,7 @@ cover: "/images/ground-robot/final_robot_2.jpg"
 project_website: "https://github.com/patuan07/eg1311-project-nus"
 date: "2025-11-12"
 collection: portfolio
+tags: [Robotics, Embedded]
 ---
 
 This group project was completed as part of the EG1311 Design and Make course taught at the National University of Singapore (NUS). For more information and details, view the full report [here](/files/B15_Team4_report.pdf)
@@ -38,6 +39,5 @@ The centerpiece of the module is the group design project. Students must design,
 
 - **Precision Maneuvering**: Execution of specific terminal tasks, such as stopping within a defined zone or discharging a payload.
 
-<div align="center">
-  <img width="687" height="171" alt="image" src="/images/ground-robot/ground-course.png" />
-</div>
+{% include figure.html image_path="/images/ground-robot/ground-course.png" alt="" dims="687x171"
+   max_px="687" %}

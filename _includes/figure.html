@@ -1,0 +1,78 @@
+{% comment %}
+  Figure for project write-ups.
+
+  Replaces a hand-rolled block that appeared 46 times across _portfolio:
+
+      <div align="center">
+        <img width="90%" alt="..." src="/images/..." />
+        <br>
+        <em>Figure 4. Caption.</em>
+      </div>
+
+  Two problems with that pattern. Every image loaded eagerly, so a write-up with
+  26 of them (image-inpainting) competed with the text for bandwidth on first
+  paint. And `width="90%"` is a demand, not a ceiling: an image whose source was
+  narrower than 90% of the column was stretched up to it and blurred. Here the
+  same number becomes a max-width, so a figure fills the column when it can and
+  is never enlarged past its own resolution.
+
+  Usage — single panel:
+
+    {% include figure.html image_path="/images/foo/plot.png"
+       alt="Training loss" caption="Figure 3. Training loss." width="90" %}
+
+  Two panels side by side (the caption should name left and right itself):
+
+    {% include figure.html image_path="/images/foo/before.png"
+       image_path_2="/images/foo/after.png"
+       alt="Before" alt_2="After"
+       caption="Before (left) and after (right)." %}
+
+  Arguments:
+    image_path    required. Root-relative, as the markdown already writes it.
+    image_path_2  optional. Presence switches the figure to the two-panel layout.
+    alt / alt_2   description of what the image shows.
+    caption       optional; omit and no figcaption is emitted.
+    width         percent of the column, used as a ceiling.
+    max_px        pixel ceiling, for images whose native width is known to be
+                  narrower than the column. Takes precedence over width.
+    dims          "WxH", the image's intrinsic size, emitted as width/height
+                  attributes. CSS keeps them from setting the rendered size
+                  (height stays auto), but the browser uses them to reserve the
+                  right box before a lazy image arrives — without this, a page
+                  with 26 figures reflows its way down the scroll.
+    dims_2        same, for the second panel.
+
+  Paths run through relative_url so a future baseurl still resolves.
+{% endcomment %}
+{%- assign fig_src = include.image_path -%}
+{%- unless fig_src contains '://' -%}
+  {%- assign fig_src = fig_src | relative_url -%}
+{%- endunless -%}
+
+{%- assign fig_alt = include.alt | default: include.caption | default: '' -%}
+
+{%- assign fig_style = 'max-width: 100%;' -%}
+{%- if include.max_px -%}
+  {%- assign fig_style = 'max-width: ' | append: include.max_px | append: 'px;' -%}
+{%- elsif include.width -%}
+  {%- assign fig_style = 'max-width: ' | append: include.width | append: '%;' -%}
+{%- endif -%}
+
+<figure class="figure{% if include.image_path_2 %} figure--pair{% endif %}" style="{{ fig_style }}">
+  <div class="figure__panel">
+    <img src="{{ fig_src }}" alt="{{ fig_alt | escape_once }}"{% if include.dims %} width="{{ include.dims | split: 'x' | first }}" height="{{ include.dims | split: 'x' | last }}"{% endif %} loading="lazy" decoding="async">
+  </div>
+  {%- if include.image_path_2 %}
+  {%- assign fig_src_2 = include.image_path_2 -%}
+  {%- unless fig_src_2 contains '://' -%}
+    {%- assign fig_src_2 = fig_src_2 | relative_url -%}
+  {%- endunless %}
+  <div class="figure__panel">
+    <img src="{{ fig_src_2 }}" alt="{{ include.alt_2 | default: '' | escape_once }}"{% if include.dims_2 %} width="{{ include.dims_2 | split: 'x' | first }}" height="{{ include.dims_2 | split: 'x' | last }}"{% endif %} loading="lazy" decoding="async">
+  </div>
+  {%- endif %}
+  {%- if include.caption %}
+  <figcaption>{{ include.caption | escape_once }}</figcaption>
+  {%- endif %}
+</figure>

@@ -5,6 +5,7 @@ date: "2026-03-25"
 cover: "/images/underwater-localization/stereoadapter_depth.jpeg"
 project_website: "https://github.com/patuan07/ros2-stereoadapter"
 collection: projects
+tags: [Computer vision, ROS 2, Underwater]
 ---
 
 View this project on Github:
@@ -36,11 +37,9 @@ The disparity map produced by SGBM was immediately affected by the underwater en
 
 The result was a disparity map saturated with spurious readings. Valid depth estimates were present, but they were buried inside a dense field of noise that made direct use of the raw output unreliable.
 
-<div align="center">
-  <img width="80%" alt="SGBM disparity map on a human subject" src="/images/underwater-localization/sgbm_face_disparity.png" />
-  <br>
-  <em>Figure 1. SGBM disparity map computed on the author. The general shape of the face is discernible, confirming that the algorithm can recover structure when sufficient local contrast is present — but the surrounding regions are filled with noisy, unreliable readings.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/sgbm_face_disparity.png"
+   alt="SGBM disparity map on a human subject" dims="319x277" width="80"
+   caption="Figure 1. SGBM disparity map computed on the author. The general shape of the face is discernible, confirming that the algorithm can recover structure when sufficient local contrast is present — but the surrounding regions are filled with noisy, unreliable readings." %}
 
 > **A note on this stage.** No systematic evaluation of SGBM noise levels was carried out at this point, and no quantitative metrics were recorded. The decision to move on was based on qualitative inspection of the disparity output on underwater footage, where the signal-to-noise ratio was assessed as too low to proceed without intervention.
 
@@ -58,17 +57,13 @@ The Controls team had been pursuing environment-aware navigation using a 3D poin
 
 The model was run on captured underwater frames. Depth maps and derived 3D point clouds were generated and inspected qualitatively.
 
-<div align="center">
-  <img width="90%" alt="StereoAdapter depth map on underwater scene" src="/images/underwater-localization/stereoadapter_depth.jpeg" />
-  <br>
-  <em>Figure 2. StereoAdapter depth estimate on an underwater scene. The model recovers plausible scene geometry where SGBM produced noise.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/stereoadapter_depth.jpeg"
+   alt="StereoAdapter depth map on underwater scene" dims="1058x775" width="90"
+   caption="Figure 2. StereoAdapter depth estimate on an underwater scene. The model recovers plausible scene geometry where SGBM produced noise." %}
 
-<div align="center">
-  <img width="90%" alt="Generated 3D point cloud from StereoAdapter" src="/images/underwater-localization/stereoadapter_pointcloud.jpeg" />
-  <br>
-  <em>Figure 3. 3D point cloud reconstructed from StereoAdapter depth estimates. Structure in the scene is visible, though fidelity near featureless surfaces is limited.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/stereoadapter_pointcloud.jpeg"
+   alt="Generated 3D point cloud from StereoAdapter" dims="1851x917" width="90"
+   caption="Figure 3. 3D point cloud reconstructed from StereoAdapter depth estimates. Structure in the scene is visible, though fidelity near featureless surfaces is limited." %}
 
 ## 2.3 The Compute Bottleneck
 
@@ -107,11 +102,10 @@ One root cause of sparse and noisy disparity in low-contrast underwater scenes i
 - **CLAHE** (Contrast Limited Adaptive Histogram Equalisation): Enhances local contrast across the image by equalising intensity distributions within small tiles, rather than globally. The contrast limit prevents over-amplification of noise in uniform regions.
 - **Histogram Stretching**: Linearly rescales the intensity range to span the full available dynamic range, recovering contrast lost to the absorptive and scattering properties of water.
 
-<div align="center">
-  <img width="90%" alt="Effect of CLAHE and histogram stretching on valid point density" src="/images/underwater-localization/preprocessing_comparison.png" />
-  <br>
-  <em>Figure 4. Comparison of valid disparity points inside the bounding box before and after applying CLAHE and histogram stretching. Preprocessing increases the number of usable points the algorithm can recover from the scene.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/preprocessing_comparison.png"
+   alt="Effect of CLAHE and histogram stretching on valid point density" dims="1028x320"
+   width="90"
+   caption="Figure 4. Comparison of valid disparity points inside the bounding box before and after applying CLAHE and histogram stretching. Preprocessing increases the number of usable points the algorithm can recover from the scene." %}
 
 The improvement shown in Figure 4 confirms that the sparsity problem in Stage 1 was partly a consequence of poor input contrast, not solely an algorithmic limitation of SGBM. Providing better-conditioned images to the matcher meaningfully increases the density of valid, in-box points.
 
@@ -138,17 +132,13 @@ Two corrective models were fitted to the collected data:
 
 where $x$ is the raw pipeline output and $\hat{d}$ is the corrected depth estimate.
 
-<div align="center">
-  <img width="80%" alt="First-order polynomial fit to ground truth data" src="/images/underwater-localization/linear_fit.png" />
-  <br>
-  <em>Figure 5. First-order polynomial fit between raw pipeline depth readings and ground truth distances. A linear relationship is a reasonable approximation across the measured range.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/linear_fit.png"
+   alt="First-order polynomial fit to ground truth data" dims="1077x634" width="80"
+   caption="Figure 5. First-order polynomial fit between raw pipeline depth readings and ground truth distances. A linear relationship is a reasonable approximation across the measured range." %}
 
-<div align="center">
-  <img width="80%" alt="Second-order polynomial fit to ground truth data" src="/images/underwater-localization/quadratic_fit.png" />
-  <br>
-  <em>Figure 6. Second-order polynomial fit. The additional degree of freedom allows the model to account for the nonlinear error growth at longer ranges that a linear model cannot capture.</em>
-</div>
+{% include figure.html image_path="/images/underwater-localization/quadratic_fit.png"
+   alt="Second-order polynomial fit to ground truth data" dims="1077x634" width="80"
+   caption="Figure 6. Second-order polynomial fit. The additional degree of freedom allows the model to account for the nonlinear error growth at longer ranges that a linear model cannot capture." %}
 
 The second-order fit captures the nonlinear component of the underwater reprojection error — at longer distances, the systematic bias increases faster than a linear function of distance, which aligns with the physics of refraction errors growing with the angle subtended by the light path through the housing.
 

@@ -274,7 +274,8 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comment: true
+      # an empty comment box under a write-up adds nothing
+      comment: false
   # _talks
   - scope:
       path: ""

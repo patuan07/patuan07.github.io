@@ -5,6 +5,7 @@ cover: "/images/ai-assistant/ai-assistant.jpg"
 project_website: "https://github.com/patuan07/talking-robot/"
 date: "2026-01-16"
 collection: projects
+tags: [Embedded, Robotics]
 ---
 
 [View this project on Github](https://github.com/patuan07/talking-robot/)
@@ -49,58 +50,45 @@ On the hardware side, the architecture leverages the ESP32-S3's high-speed proce
 
 Moreover, the software is highly customizable through "System Prompts," which allow developers to hardcode specific personalities or roles directly into the AI's logic—making it an ideal "brain" for a custom robot that needs to behave in a specific way, such as a language tutor or a personalized assistant.
 
-<div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="/images/ai-assistant/fixed-audio-circuit.jpg" />
-  <br>
-  <em>Electric circuit of the AI Assistant system.</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/fixed-audio-circuit.jpg"
+   alt="Circuit diagram of the audio path" dims="1008x856" max_px="400"
+   caption="Figure 1. Electric circuit of the AI Assistant system." %}
 
 ### Animatronic eyes and LCD mouth
 A key element in humanizing the robotic assistant is the inclusion of a 3D-printed animatronic eye mechanism. Based on the open-source designs by Will Cogley, this mechanism provides a robust yet simple solution for realistic gaze and blinking. The motion control system is powered by an Arduino, utilizing an Adafruit 16-channel 12-bit PWM/Servo Driver to ensure smooth, precise servo transitions, allowing the robot to establish more engaging contact with the user.
 
-<div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="/images/ai-assistant/animatronic-eyes.jpg" />
-  <br>
-  <em>Animatronic eyes connected to Adafruit Servo Driver.</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/animatronic-eyes.jpg"
+   alt="Animatronic eyes wired to a servo driver" dims="4624x2604" max_px="400"
+   caption="Figure 2. Animatronic eyes connected to Adafruit Servo Driver." %}
 
 To give the robot a more friendly appearance, I also included an LCD mouth using the LCM1602 package, which features I2C support for easy implementation. Since the module’s internal ROM lacked appropriate mouth shapes, I developed custom 5x8 pixel glyphs to represent different mouth states. By alternating between these custom characters during audio playback, a basic lip-syncing effect was achieved. Final calibration involved manually tuning the onboard potentiometer on the I2C backpack to optimize the contrast ratio for maximum legibility.
 
-<div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="/images/ai-assistant/untuned-lcd.png" />
-  <br>
-  <em>Untuned LCD screen not being able to display characters clearly.</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/untuned-lcd.png"
+   alt="LCD showing garbled characters" dims="666x375" max_px="400"
+   caption="Figure 3. Untuned LCD screen not being able to display characters clearly." %}
 
 ### Wake word
 To facilitate natural user interaction, the system will passively listen for specific 'wake phrases,' such as 'Hey, [Name],' during the idle state. Upon successful detection of the trigger phrase, the assistant transitions from an idle state to a continuous conversation mode. During this active state, the system employs Automatic Speech Recognition (ASR) to maintain a seamless dialogue flow. If the system detects a prolonged period of silence exceeding a predefined timeout threshold, the robot executes a 'fallback' routine, returning to a low-power sleep state and physically closing its animatronic eyes.
 
 Inter-board communication between the ESP32 and the Arduino Uno was implemented using a GPIO-based bit-signaling system to synchronize the robot’s state. Although the ESP32 operates on a 3.3V logic level, this voltage is sufficient to meet the Input High Voltage threshold for the Arduino Uno. This direct connection allowed for reliable signal detection without the need for a level shifter, while inherently protecting the ESP32 from overvoltage, as the signal remains within the safe operating limits of both devices.
 
-<div align="center">
-  <img width="400" height="300" alt="Sound Circuit" src="/images/ai-assistant/bit-wise-system.png" />
-  <br>
-  <em>Bit logic for distinct states.</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/bit-wise-system.png"
+   alt="Bit-logic state diagram" dims="805x312" max_px="400"
+   caption="Figure 4. Bit logic for distinct states." %}
 
 ## Assembly
 
 The system was assembled in accordance with the schematics provided in the following section. To ensure structural integrity and improve the overall aesthetic of the robot, the internal components and circuitry were housed within a custom white enclosure. This integration not only conceals the complex wiring but also protects the sensitive electronics from external interference and physical damage.
 
-<div align="center">
-  <img width="50.6%" alt="Messy Circuit" src="/images/ai-assistant/messy-circuit.jpg" />
-  <img width="38%" alt="Arranged Circuit" src="/images/ai-assistant/boxed-circuit.png" />
-  <br>
-  <em>Unarranged wiring (left) and corresponding wiring inside the electrical box (right).</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/messy-circuit.jpg" alt="Messy Circuit"
+   dims="4624x2604" image_path_2="/images/ai-assistant/boxed-circuit.png"
+   alt_2="Arranged Circuit" dims_2="1280x960"
+   caption="Figure 5. Unarranged wiring (left) and corresponding wiring inside the electrical box (right)." %}
 
 ## Schematics
 
-<div align="center">
-  <img width="96%" alt="Sound Circuit" src="/images/ai-assistant/talking-robot-schematics.jpg" />
-  <br>
-  <em>Schematics for wiring.</em>
-</div>
+{% include figure.html image_path="/images/ai-assistant/talking-robot-schematics.jpg"
+   alt="Wiring schematic" dims="2048x1448" width="96" caption="Figure 6. Schematics for wiring." %}
 
 ## Code
 

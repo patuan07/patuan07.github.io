@@ -13,13 +13,22 @@ $doc-font-size              : 16;
 $paragraph-indent           : false; // true, false (default)
 $indent-var                 : 1.3em;
 
-/* System typefaces */
+/* System typefaces
+ *
+ * Three registers, deliberately distinct:
+ *   $serif      — prose. Long-form write-ups set in this.
+ *   $sans-serif — interface. Headings, nav, buttons, cards, labels.
+ *   $mono       — data. Dates, tech tags, figure numbers, file paths.
+ * All three are loaded in /_includes/head/custom.html. Changing a family
+ * here without changing that link silently falls back to Georgia.
+ */
 $serif                      : 'Merriweather', Georgia, Times, serif;
-$sans-serif                 : 'Merriweather', -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace                  : Monaco, Consolas, "Lucida Console", monospace;
+$sans-serif                 : 'IBM Plex Sans', -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$mono                       : 'IBM Plex Mono', ui-monospace, SFMono-Regular, Monaco, Consolas, "Lucida Console", monospace;
+$monospace                  : $mono;
 
 /* Sans serif typefaces */
-$sans-serif-narrow          : $serif;
+$sans-serif-narrow          : $sans-serif;
 $helvetica                  : Helvetica, "Helvetica Neue", Arial, sans-serif;
 
 /* Serif typefaces */
@@ -40,8 +49,8 @@ $type-size-7                : 0.6875em; // ~11px
 $type-size-8                : 0.625em;  // ~10px
 
 $global-font-family         : $serif;
-$header-font-family         : $serif;
-$caption-font-family        : $serif;
+$header-font-family         : $sans-serif;
+$caption-font-family        : $sans-serif;
 
 /* ==========================================================================
    Breakpoints

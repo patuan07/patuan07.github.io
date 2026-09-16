@@ -2,23 +2,49 @@
 
 <!-- start custom head snippets -->
 
-<!-- Google Fonts: EB Garamond for elegant academic look -->
+<!-- Google Fonts.
+     These three families must stay in sync with _sass/_themes.scss:
+       Merriweather   -> $serif        (body prose)
+       IBM Plex Sans  -> $sans-serif   (headings, nav, cards, labels)
+       IBM Plex Mono  -> $mono         (dates, tags, figure numbers) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg
+     Only the files that actually exist are declared: this block used to also
+     list favicon.svg and a root-relative /images/favicon.ico, neither of which
+     is in /images, so every page load asked for two icons it could not have. -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
-<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
 <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
 <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-512x512.png" sizes="512x512"/>
 <link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon.ico"/>
 <meta name="theme-color" content="#ffffff"/>
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 
 
-<!-- Support for MatJax -->
+<!-- Support for MathJax.
+     $...$ is added to the default inline delimiters. MathJax 3 ships with only
+     \(...\) for inline math, which has two consequences on this site: a $...$
+     written by hand renders as literal dollar signs, and the only delimiter
+     left that works is $$...$$, which MathJax treats as *display* math and
+     therefore breaks onto its own centred line wherever it is used.
+
+     \(...\) is kept in the list below for completeness, but it is unusable in
+     this project's Markdown: kramdown treats \( as an escape and strips the
+     backslash before MathJax ever sees it. Write inline math as $...$ and
+     display math as $$...$$.
+
+     This must be set before the MathJax script loads. -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
 <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 

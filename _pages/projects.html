@@ -7,10 +7,35 @@ author_profile: true
 
 {% include base_path %}
 
-<div style="margin-bottom: 30px;"></div>
+{% comment %}
+  The topic row is derived from the tags in each project's front matter, so it
+  stays in sync on its own — adding a tag to a project adds a button here.
+  It ships hidden and is revealed by portfolio-filter.js; with JS unavailable
+  the reader just gets the full list and no inert buttons.
+{% endcomment %}
+{% assign all_tags = site.portfolio | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
 
+<div class="portfolio-filter" role="group" aria-label="Filter projects by topic" hidden>
+  <button type="button" class="is-active" data-filter="all" aria-pressed="true">
+    All<span class="portfolio-filter__count">{{ site.portfolio | size }}</span>
+  </button>
+  {% for tag in all_tags %}
+    {% assign count = 0 %}
+    {% for post in site.portfolio %}
+      {% if post.tags contains tag %}{% assign count = count | plus: 1 %}{% endif %}
+    {% endfor %}
+    <button type="button" data-filter="{{ tag | downcase }}" aria-pressed="false">
+      {{ tag }}<span class="portfolio-filter__count">{{ count }}</span>
+    </button>
+  {% endfor %}
+</div>
 
-{% for post in site.portfolio reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="portfolio-grid" id="portfolio-grid">
+  {% for post in site.portfolio reversed %}
+    {% include archive-single.html %}
+  {% endfor %}
+</div>
 
+<p class="portfolio-empty" id="portfolio-empty" hidden>No projects match that topic yet.</p>
+
+<script src="{{ base_path }}/assets/js/portfolio-filter.js" defer></script>

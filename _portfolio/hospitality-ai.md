@@ -5,6 +5,7 @@ cover: "/images/hospitality-ai/bed-align_500x500.png"
 project_website: "https://github.com/patuan07/HospitalityAI"
 date: "2026-02-02"
 collection: projects
+tags: [Computer vision, Deep learning]
 ---
 
 [View this project on Github](https://github.com/patuan07/HospitalityAI)
@@ -25,11 +26,8 @@ While the competition provided ready-to-run Google Colab notebooks, I wanted to 
 
 ## Workflow Overview
 
-<div align="center">
-  <img width="90%" alt="Workflow" src="/images/hospitality-ai/hospitality-workflow.png" />
-  <br>
-  <em>Program workflow and design.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/hospitality-workflow.png"
+   alt="Workflow" dims="903x672" width="90" caption="Figure 1. Program workflow and design." %}
 
 ## Stage 1: Binary Classification
 
@@ -46,11 +44,8 @@ I chose the latter configuration, as having a dedicated test set allows me to ru
 
 There are several ways to split data into the correct structure for model training. During initial testing, I uploaded around 100 images from each category to Roboflow, a platform used to create and manage datasets for machine learning models. While this was sufficient for early experimentation, scaling up to the full dataset of around 1,700 images proved impractical, as the time required for uploading and downloading the data was too long. As a result, I wrote a simple script to split and organize the dataset locally into the required directory structure. This approach removed the dependency on external tools, allowed faster iteration, and gave better control over the data pipeline. Handling the dataset locally significantly improved efficiency and accelerated overall project progress.
 
-<div align="center">
-  <img width="90%" alt="Stage 1 demo" src="/images/hospitality-ai/stage-1-demo.png" />
-  <br>
-  <em>Demonstration of interface during stage 1.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/stage-1-demo.png" alt="Stage 1 demo"
+   dims="2560x1529" width="90" caption="Figure 2. Demonstration of interface during stage 1." %}
 
 ### Model Architecture Selection: Why ResNet-18?
 
@@ -110,11 +105,9 @@ While newer models like YOLO11 offer incremental accuracy improvements, the trad
 
 This choice exemplifies a key engineering principle: selecting "good enough" solutions that maximize iteration speed rather than chasing theoretical optimality when time is constrained.
 
-<div align="center">
-  <img width="90%" alt="Stage 2 and 3 demo" src="/images/hospitality-ai/stage-2-3-demo.png" />
-  <br>
-  <em>Demonstration of interface during stage 2 and 3.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/stage-2-3-demo.png"
+   alt="Stage 2 and 3 demo" dims="2560x1529" width="90"
+   caption="Figure 3. Demonstration of interface during stage 2 and 3." %}
 
 ### Observed Challenges
 
@@ -122,12 +115,10 @@ From the training results, we can see that the labels are now more evenly distri
 
 In hindsight, this phenomenon can be partly attributed to my dataset selection process. As shown in our Stage 2 workflow, the object detection model is only activated when a bed is first classified as unmade. Because of this assumption, I selected only images of unmade beds for training. Consequently, the model was rarely exposed to clean or irrelevant background regions without defects. This lack of negative background examples led to an increase in false positives, as the model learned to associate background features with defect classes, reinforcing background bias.
 
-<div align="center">
-  <img width="45%" alt="Label Quantities" src="/images/hospitality-ai/stage-23-label.png" />
-  <img width="51%" alt="Confusion Matrix" src="/images/hospitality-ai/stage-23-confusion-matrix.png" />
-  <br>
-  <em>Label in dataset (left) and confusion matrix (right).</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/stage-23-label.png"
+   alt="Class label distribution" dims="631x615"
+   image_path_2="/images/hospitality-ai/stage-23-confusion-matrix.png" alt_2="Confusion Matrix"
+   dims_2="580x501" caption="Figure 4. Label in dataset (left) and confusion matrix (right)." %}
 
 ## Stage 4: Geometric Alignment
 
@@ -143,11 +134,9 @@ Using these detections, I computed the center point of the blanket and the cente
 
 In an ideal case where the pillows are properly aligned, this resultant vector should be parallel or orthogonal to the sides of the blanket. To extract the blanket's orientation, we applied the Hough Transform to detect prominent lines in the image, including the edges of the blanket. By comparing the angle between the resultant vector and the detected blanket edges, we were able to quantify alignment quality and assign a normalized score between 0 and 1.
 
-<div align="center">
-  <img width="70%" alt="Pillow allignment" src="/images/hospitality-ai/bed-align.png" />
-  <br>
-  <em>Checking pillow allignment using traditional methods.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/bed-align.png"
+   alt="Checking pillow alignment by traditional methods" dims="392x394" width="70"
+   caption="Figure 5. Checking pillow alignment using traditional methods." %}
 
 ### Training Challenge: Overcoming Local Minima
 
@@ -160,11 +149,8 @@ To address this issue, I adjusted the **early stopping patience parameter** in t
 
 The training loss eventually decreased from 0.95 to approximately 0.6, and the model's validation accuracy improved significantly, enabling reliable pillow detection for the geometric alignment task.
 
-<div align="center">
-  <img width="90%" alt="Stage 4 demo" src="/images/hospitality-ai/stage-4-demo.png" />
-  <br>
-  <em>Demonstration of interface during stage 4.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/stage-4-demo.png" alt="Stage 4 demo"
+   dims="2560x1529" width="90" caption="Figure 6. Demonstration of interface during stage 4." %}
 
 ## Stage 5: Evaluating Model Robustness
 
@@ -233,11 +219,9 @@ After retraining the models with this expanded augmentation dataset, images that
 
 Images that were already easy to classify showed minimal change, indicating that augmentation mainly benefited difficult edge cases without degrading performance on standard scenarios.
 
-<div align="center">
-  <img width="90%" alt="Augmented images" src="/images/hospitality-ai/bed-augmentation.png" />
-  <br>
-  <em>Examples of augmented images used in training.</em>
-</div>
+{% include figure.html image_path="/images/hospitality-ai/bed-augmentation.png"
+   alt="Augmented images" dims="1239x458" width="90"
+   caption="Figure 7. Examples of augmented images used in training." %}
 
 ## Deployment
 

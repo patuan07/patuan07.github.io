@@ -83,10 +83,10 @@
     transition: all 0.3s ease;
 
     &:hover {
-      color: #ff0000;
+      color: var(--global-link-color-hover);
       text-decoration: underline;
       text-decoration-style: solid;
-      text-decoration-color: #ff0000;
+      text-decoration-color: var(--global-link-color-hover);
 
       img {
         box-shadow: 0 0 10px rgba(#000, 0.25);
@@ -410,27 +410,293 @@
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   FIGURES
+   Rendered by /_includes/figure.html, which replaced the hand-rolled
+   `<div align="center">` block this collection used to repeat 46 times.
+   _base.scss already styles figcaption, so this only builds the frame around it.
+   ========================================================================== */
+
+.page__content .figure {
+  margin: 2em auto;
+  text-align: center;
+
+  img {
+    display: block;
+    /* auto + max-width rather than width:100% — the figure may fill the
+       column, but an image is never enlarged past its own resolution */
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* these are mostly matplotlib PNGs with white backgrounds: on the light
+       theme they would bleed into the page, on the dark one they glare */
+    border: 1px solid var(--global-border-color);
+    border-radius: 6px;
+  }
+
+  figcaption {
+    margin-top: 0.75em;
+    margin-bottom: 0;
+    font-size: $type-size-7;
+    line-height: 1.55;
+  }
+}
+
+/* Two panels. Grid rather than flex so the caption can span both columns
+   without needing a wrapper element. */
+.page__content .figure--pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+
+  figcaption {
+    grid-column: 1 / -1;
+  }
+
+  @include breakpoint(max-width $small) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grid and flex items default to min-width:auto, whose floor is the content's
+   min-content width — for a replaced element, its intrinsic width. A 2000px
+   plot in a 350px column would therefore overflow its track instead of
+   shrinking, which is exactly what max-width on the img is meant to prevent. */
+.page__content .figure__panel {
+  min-width: 0;
+}
+
+/* ==========================================================================
+   PORTFOLIO CARDS
+   Rendered by /_includes/archive-single.html, once per document in _portfolio.
+   Every rule is scoped under .portfolio-item so it outranks the generic
+   `.archive a` link styling in _archive.scss without needing !important.
+   ========================================================================== */
+
 .portfolio-item {
   display: flex;
-  height: 300px;
+  /* min-height, not height: a long title must be allowed to grow the card
+     rather than be clipped by it. */
+  min-height: 240px;
+  border: 1px solid var(--global-border-color);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
   margin-bottom: 20px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--global-dark-border-color);
+    box-shadow: 0 10px 26px -14px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Below this width the 34/66 split squeezes the cover into a sliver. */
+  @include breakpoint(max-width $small) {
+    flex-direction: column;
+  }
 }
 
-.portfolio-image {
-  flex: 0 0 30%;
-}
-
-.portfolio-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.portfolio-item .portfolio-image {
+  flex: 0 0 34%;
   display: block;
+  background: var(--global-border-color);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* the card already lifts on hover; a second shadow on the image is noise */
+  &:hover img {
+    box-shadow: none;
+  }
+
+  @include breakpoint(max-width $small) {
+    flex: 0 0 auto;
+    height: 180px;
+  }
 }
 
-.portfolio-content {
+.portfolio-item .portfolio-content {
   flex: 1;
-  padding: 20px;
+  min-width: 0;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.portfolio-item .archive__item-title {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.38;
+  border-bottom: none;
+
+  a {
+    color: var(--global-text-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-link-color);
+      text-decoration: none;
+    }
+  }
+}
+
+.portfolio-item .portfolio-description {
+  margin: 0;
+  font-family: $sans-serif;
+  font-size: $type-size-6;
+  line-height: 1.62;
+  color: var(--global-text-color-light);
+  /* clamp so a long excerpt cannot make one card twice the height of its
+     neighbours — the full text is on the project page */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.portfolio-item .portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    font-family: $mono;
+    font-size: $type-size-7;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    /* a neutral wash reads correctly on both the light and dark grounds,
+       which the theme's near-white code/thead tokens do not */
+    background: rgba(127, 127, 127, 0.14);
+    color: var(--global-text-color-light);
+    white-space: nowrap;
+  }
+}
+
+.portfolio-item .portfolio-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  /* pushes the footer down however tall the card grows */
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--global-border-color);
+}
+
+.portfolio-item .portfolio-year {
+  font-family: $mono;
+  font-size: $type-size-7;
+  color: var(--global-text-color-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.portfolio-item .portfolio-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.portfolio-item .portfolio-link {
+  font-family: $sans-serif;
+  font-weight: 600;
+  font-size: $type-size-6;
+  color: var(--global-link-color);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--global-link-color-hover);
+    text-decoration: underline;
+  }
+}
+
+.portfolio-item .portfolio-repo {
+  font-family: $mono;
+  font-size: $type-size-7;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--global-text-color-light);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--global-link-color);
+    text-decoration: none;
+  }
+}
+
+/* Topic filter, rendered by _pages/projects.html and revealed by
+   assets/js/portfolio-filter.js. Shown only when JS can drive it. */
+
+.portfolio-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+
+  /* beats the display:flex above, so the hidden attribute still hides it */
+  &[hidden] {
+    display: none;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $sans-serif;
+    font-size: $type-size-6;
+    font-weight: 500;
+    padding: 6px 12px;
+    border: 1px solid var(--global-border-color);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+      color: var(--global-text-color);
+      border-color: var(--global-dark-border-color);
+    }
+
+    &.is-active {
+      background: var(--global-text-color);
+      border-color: var(--global-text-color);
+      color: var(--global-bg-color);
+    }
+  }
+}
+
+.portfolio-filter__count {
+  font-family: $mono;
+  font-size: $type-size-8;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+.portfolio-grid .list__item[hidden] {
+  display: none;
+}
+
+.portfolio-empty {
+  font-family: $sans-serif;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+
+  &[hidden] {
+    display: none;
+  }
 }
