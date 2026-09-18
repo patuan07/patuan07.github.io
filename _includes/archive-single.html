@@ -17,9 +17,22 @@
   <article class="archive__item portfolio-item">
 
     <!-- LEFT: COVER (decorative — the title below carries the link) -->
-    <a class="portfolio-image" href="{{ base_path }}{{ post.url }}" tabindex="-1" aria-hidden="true">
+    <a class="portfolio-image{% if post.cover_video %} portfolio-image--video{% endif %}"
+       href="{{ base_path }}{{ post.url }}" tabindex="-1" aria-hidden="true">
       {% if post.cover %}
         <img src="{{ post.cover | prepend: base_path }}" alt="" loading="lazy">
+      {% endif %}
+      {% comment %}
+        No autoplay attribute, on purpose. Browsers only autoplay muted video
+        anyway, and setting display:none on a <video> does not stop it
+        downloading or playing — so a reader who has asked for reduced motion
+        would still pay for it. portfolio-video.js calls play() only after
+        checking the preference; without JS the poster frame stands.
+      {% endcomment %}
+      {% if post.cover_video %}
+        <video src="{{ post.cover_video | prepend: base_path }}"
+               poster="{{ post.cover | prepend: base_path }}"
+               data-autoplay muted loop playsinline preload="none"></video>
       {% endif %}
     </a>
 

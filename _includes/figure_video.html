@@ -1,0 +1,63 @@
+{% comment %}
+  Video counterpart to /_includes/figure.html, for a clip in a project write-up.
+
+  Deliberately mirrors that include's contract — same argument names, same
+  <figure class="figure"> markup — so the two are recognisably siblings and the
+  existing .page__content .figure rules apply without a second set of styles.
+  Only the frame around the media is added, in the .figure--video rule.
+
+  Usage:
+
+    {% include figure_video.html video_path="/images/foo/clip.mp4"
+       poster="/images/foo/clip.png" width="90"
+       caption="Figure 1. The learned policy traversing a cone field." %}
+
+  Arguments:
+    video_path  required. Root-relative, as the markdown already writes it.
+    poster      optional, but supply one: with preload="none" the element has no
+                intrinsic size until its metadata arrives, and a reader who has
+                asked for reduced motion — for whom the clip never plays — would
+                otherwise get an empty bordered box rather than a frame.
+    caption     optional; omit and no figcaption is emitted.
+    width       percent of the column, used as a ceiling.
+    max_px      pixel ceiling. Takes precedence over width.
+    dims        "WxH", the video's intrinsic size, emitted as width/height
+                attributes. Without it the element reserves no space until its
+                metadata loads, and the page reflows underneath the reader as
+                each clip arrives.
+    attrs       overrides the playback attributes. The default autoplays muted
+                and looping — see portfolio-video.js for why there is no
+                autoplay attribute in the markup itself.
+{% endcomment %}
+{%- assign vid_src = include.video_path -%}
+{%- unless vid_src contains '://' -%}
+  {%- assign vid_src = vid_src | relative_url -%}
+{%- endunless -%}
+
+{%- assign vid_poster = include.poster | default: '' -%}
+{%- unless vid_poster == '' or vid_poster contains '://' -%}
+  {%- assign vid_poster = vid_poster | relative_url -%}
+{%- endunless -%}
+
+{%- assign vid_dims = '' -%}
+{%- if include.dims -%}
+  {%- assign vid_w = include.dims | split: 'x' | first -%}
+  {%- assign vid_h = include.dims | split: 'x' | last -%}
+  {%- assign vid_dims = ' width="' | append: vid_w | append: '" height="' | append: vid_h | append: '"' -%}
+{%- endif -%}
+
+{%- assign vid_style = 'max-width: 100%;' -%}
+{%- if include.max_px -%}
+  {%- assign vid_style = 'max-width: ' | append: include.max_px | append: 'px;' -%}
+{%- elsif include.width -%}
+  {%- assign vid_style = 'max-width: ' | append: include.width | append: '%;' -%}
+{%- endif -%}
+
+<figure class="figure figure--video" style="{{ vid_style }}">
+  <div class="figure__panel">
+    <video src="{{ vid_src }}"{% if vid_poster != '' %} poster="{{ vid_poster }}"{% endif %}{{ vid_dims }} {{ include.attrs | default: 'data-autoplay muted loop playsinline preload="none"' }}></video>
+  </div>
+  {%- if include.caption %}
+  <figcaption>{{ include.caption | escape_once }}</figcaption>
+  {%- endif %}
+</figure>

@@ -28,10 +28,20 @@
        alt="Before" alt_2="After"
        caption="Before (left) and after (right)." %}
 
+  Three panels, for a set of comparable items — three difficulty settings, three
+  layouts. Falls back to the two-column grid below the small breakpoint:
+
+    {% include figure.html image_path="/images/foo/easy.png"
+       image_path_2="/images/foo/medium.png"
+       image_path_3="/images/foo/hard.png"
+       caption="Easy, medium and hard (left to right)." %}
+
   Arguments:
     image_path    required. Root-relative, as the markdown already writes it.
     image_path_2  optional. Presence switches the figure to the two-panel layout.
-    alt / alt_2   description of what the image shows.
+    image_path_3  optional. Presence switches it to the three-panel layout, and
+                  takes precedence over image_path_2.
+    alt / alt_2 / alt_3   description of what the image shows.
     caption       optional; omit and no figcaption is emitted.
     width         percent of the column, used as a ceiling.
     max_px        pixel ceiling, for images whose native width is known to be
@@ -42,6 +52,7 @@
                   right box before a lazy image arrives — without this, a page
                   with 26 figures reflows its way down the scroll.
     dims_2        same, for the second panel.
+    dims_3        same, for the third panel.
 
   Paths run through relative_url so a future baseurl still resolves.
 {% endcomment %}
@@ -59,7 +70,7 @@
   {%- assign fig_style = 'max-width: ' | append: include.width | append: '%;' -%}
 {%- endif -%}
 
-<figure class="figure{% if include.image_path_2 %} figure--pair{% endif %}" style="{{ fig_style }}">
+<figure class="figure{% if include.image_path_3 %} figure--triple{% elsif include.image_path_2 %} figure--pair{% endif %}" style="{{ fig_style }}">
   <div class="figure__panel">
     <img src="{{ fig_src }}" alt="{{ fig_alt | escape_once }}"{% if include.dims %} width="{{ include.dims | split: 'x' | first }}" height="{{ include.dims | split: 'x' | last }}"{% endif %} loading="lazy" decoding="async">
   </div>
@@ -70,6 +81,15 @@
   {%- endunless %}
   <div class="figure__panel">
     <img src="{{ fig_src_2 }}" alt="{{ include.alt_2 | default: '' | escape_once }}"{% if include.dims_2 %} width="{{ include.dims_2 | split: 'x' | first }}" height="{{ include.dims_2 | split: 'x' | last }}"{% endif %} loading="lazy" decoding="async">
+  </div>
+  {%- endif %}
+  {%- if include.image_path_3 %}
+  {%- assign fig_src_3 = include.image_path_3 -%}
+  {%- unless fig_src_3 contains '://' -%}
+    {%- assign fig_src_3 = fig_src_3 | relative_url -%}
+  {%- endunless %}
+  <div class="figure__panel">
+    <img src="{{ fig_src_3 }}" alt="{{ include.alt_3 | default: '' | escape_once }}"{% if include.dims_3 %} width="{{ include.dims_3 | split: 'x' | first }}" height="{{ include.dims_3 | split: 'x' | last }}"{% endif %} loading="lazy" decoding="async">
   </div>
   {%- endif %}
   {%- if include.caption %}

@@ -17,9 +17,9 @@ I'm a rising sophomore studying **Robotics and Machine Intelligence** at the **N
 
 Currently, I'm a **Software Engineer** at **Bumblebee Autonomous Systems**, where we're developing an Autonomous Underwater Vehicle. It's an exciting challenge that combines perception systems, path planning, and real-time control in one of the most demanding environments for robotics.
 
-{% include figure.html image_path="/images/auv.jpg" alt="The autonomous underwater vehicle" dims="1280x960" width="96" %}
+{% include figure.html image_path="/images/auv.jpeg" alt="The autonomous underwater vehicle" dims="1280x960" width="96" %}
 
-Beyond coursework and team projects, I spend my time building things—whether that's training computer vision models, programming embedded systems, or designing autonomous navigation algorithms. I believe the best way to learn is by making, breaking, and iterating.
+Beyond coursework and team projects, I spend my time building and reading. Currently, I am very hooked on papers in embodied AI. Feel free to contact me if you want to talk more!
 
 ## What You'll Find Here
 
@@ -35,6 +35,10 @@ Feel free to explore, and don't hesitate to reach out if you'd like to discuss r
 ## News & Updates
 
 <ol class="timeline">
+  <li>
+    <span class="timeline__date">AUG 3, 2026</span>
+    <p>I became a Software Engineering Intern at <a href="https://www.beex.sg/">BeeX</a>, a maritime robotics company. My current work is focused on Perception and Manipulation.</p>
+  </li>
   <li>
     <span class="timeline__date">JUL 16, 2026</span>
     <p>Our team, <a href="https://bumblebee.sg/">Bumblebee Autonomous Systems</a>, won first place at <a href="https://robosub.org/2026/07/17/robosub-2026-final-standings/">Robosub 2026</a> in Autonomy Challenge and Design Documentation.</p>

@@ -460,12 +460,41 @@
   }
 }
 
+/* Three panels, for comparable sets — the three maze difficulties, say. Drops
+   to two columns rather than one at the small breakpoint, since a stack of
+   three near-identical images loses the comparison the row is making. */
+.page__content .figure--triple {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-items: start;
+
+  figcaption {
+    grid-column: 1 / -1;
+  }
+
+  @include breakpoint(max-width $small) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Grid and flex items default to min-width:auto, whose floor is the content's
    min-content width — for a replaced element, its intrinsic width. A 2000px
    plot in a 350px column would therefore overflow its track instead of
    shrinking, which is exactly what max-width on the img is meant to prevent. */
 .page__content .figure__panel {
   min-width: 0;
+}
+
+/* Video counterpart to the still above — same frame, so a clip and a plot read
+   as the same kind of object. Rendered by /_includes/figure_video.html. */
+.page__content .figure--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
 }
 
 /* ==========================================================================
@@ -503,7 +532,10 @@
   display: block;
   background: var(--global-border-color);
 
-  img {
+  /* video is here only so the looping cover inherits the same box as a still;
+     no card without a cover_video ever renders one. */
+  img,
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -511,13 +543,34 @@
   }
 
   /* the card already lifts on hover; a second shadow on the image is noise */
-  &:hover img {
+  &:hover img,
+  &:hover video {
     box-shadow: none;
   }
 
   @include breakpoint(max-width $small) {
     flex: 0 0 auto;
     height: 180px;
+  }
+}
+
+/* A looping cover, opted into by a cover_video in front matter. Both elements
+   are always emitted: the still paints immediately and is what a reader who has
+   asked for reduced motion keeps, so the modifier only decides which is shown.
+   Scoped to the modifier so the projects without a video are untouched. */
+.portfolio-item .portfolio-image--video {
+  img {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    video {
+      display: none;
+    }
+
+    img {
+      display: block;
+    }
   }
 }
 
